@@ -1,65 +1,66 @@
+@import url("https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap");
 @import "tailwindcss";
 
 :root {
   --background: #ffffff;
-  --foreground: #09090b;
+  --foreground: #000000;
 
   --card: #ffffff;
-  --card-foreground: #09090b;
+  --card-foreground: #000000;
 
   --popover: #ffffff;
-  --popover-foreground: #09090b;
+  --popover-foreground: #000000;
 
-  --primary: #18181b;
-  --primary-foreground: #fafafa;
+  --primary: #000000;
+  --primary-foreground: #ffffff;
 
-  --secondary: #f4f4f5;
-  --secondary-foreground: #18181b;
+  --secondary: #ffffff;
+  --secondary-foreground: #000000;
 
-  --muted: #f4f4f5;
-  --muted-foreground: #71717a;
+  --muted: #f4f4f4;
+  --muted-foreground: #666666;
 
-  --accent: #f4f4f5;
-  --accent-foreground: #18181b;
+  --accent: #000000;
+  --accent-foreground: #ffffff;
 
-  --destructive: #ef4444;
-  --destructive-foreground: #fafafa;
+  --destructive: #000000;
+  --destructive-foreground: #ffffff;
 
-  --border: #e4e4e7;
-  --input: #e4e4e7;
-  --ring: #18181b;
+  --border: #000000;
+  --input: #000000;
+  --ring: #000000;
 
   --radius: 0.5rem;
 }
 
 .dark {
-  --background: #09090b;
-  --foreground: #fafafa;
+  --background: #000000;
+  --foreground: #ffffff;
 
-  --card: #09090b;
-  --card-foreground: #fafafa;
+  --card: #000000;
+  --card-foreground: #ffffff;
 
-  --popover: #09090b;
-  --popover-foreground: #fafafa;
+  --popover: #000000;
+  --popover-foreground: #ffffff;
 
-  --primary: #fafafa;
-  --primary-foreground: #18181b;
+  --primary: #ffffff;
+  --primary-foreground: #000000;
 
-  --secondary: #27272a;
-  --secondary-foreground: #fafafa;
+  --secondary: #000000;
+  --secondary-foreground: #ffffff;
 
-  --muted: #27272a;
-  --muted-foreground: #a1a1aa;
+  --muted: #111111;
+  --muted-foreground: #999999;
 
-  --accent: #27272a;
-  --accent-foreground: #fafafa;
+  --accent: #ffffff;
+  --accent-foreground: #000000;
 
-  --destructive: #7f1d1d;
-  --destructive-foreground: #fafafa;
+  --destructive: #ffffff;
+  --destructive-foreground: #000000;
 
-  --border: #27272a;
-  --input: #27272a;
-  --ring: #d4d4d8;
+  --border: #ffffff;
+  --input: #ffffff;
+  --ring: #ffffff;
 }
 
 @theme inline {
@@ -96,7 +97,51 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground transition-colors duration-300;
+    @apply bg-background text-foreground transition-colors duration-500;
     font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  }
+}
+
+@layer utilities {
+  .brutal-border {
+    @apply border-2 border-black dark:border-white;
+  }
+
+  .brutal-card {
+    @apply bg-white dark:bg-black border-2 border-black dark:border-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)];
+  }
+
+  .brutal-btn {
+    @apply inline-flex items-center justify-center rounded-full border-2 border-black dark:border-white bg-white dark:bg-black px-6 py-2 font-bold transition-all active:translate-x-[2px] active:translate-y-[2px] active:shadow-none shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_0px_rgba(255,255,255,1)] hover:-translate-x-[1px] hover:-translate-y-[1px] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[3px_3px_0px_0px_rgba(255,255,255,1)];
+  }
+
+  .brutal-btn-primary {
+    @apply inline-flex items-center justify-center rounded-full border-2 border-black dark:border-white bg-black dark:bg-white text-white dark:text-black px-6 py-2 font-bold transition-all active:translate-x-[2px] active:translate-y-[2px] active:shadow-none shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_0px_rgba(255,255,255,1)] hover:-translate-x-[1px] hover:-translate-y-[1px] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[3px_3px_0px_0px_rgba(255,255,255,1)];
+  }
+
+  .font-pixel {
+    font-family: "Silkscreen", cursive;
+  }
+
+  .bg-dotted {
+    background-image: radial-gradient(
+      circle,
+      currentColor 1px,
+      transparent 1px
+    );
+    background-size: 20px 20px;
+  }
+
+  .animate-marquee {
+    animation: marquee 30s linear infinite;
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
   }
 }
