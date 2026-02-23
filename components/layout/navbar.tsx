@@ -4,7 +4,6 @@ import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu01Icon, Cancel01Icon, Briefcase01Icon } from "hugeicons-react";
-import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 const navItems = [
   { label: "Dashboard", href: "/" },
@@ -58,14 +57,17 @@ export function Navbar() {
             <div className="h-6 w-[2px] bg-black dark:bg-white" />
 
             <div className="flex items-center gap-4">
-              <Link href="/contact" className="brutal-btn text-xs uppercase">
-                Contact
-              </Link>
               <Link
                 href="/auth/signin"
+                className="brutal-btn text-xs uppercase"
+              >
+                Login
+              </Link>
+              <Link
+                href="/auth/signup"
                 className="brutal-btn-primary text-xs uppercase"
               >
-                Sign In
+                Sign Up
               </Link>
             </div>
           </div>

@@ -14,6 +14,7 @@ const geistMono = Geist_Mono({
 
 import { Providers } from "@/components/providers";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Footer } from "@/components/layout/footer";
 
 export const metadata: Metadata = {
   title: "InternTracker - Smart Internship Management",
@@ -37,7 +38,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Providers>{children}</Providers>
+          <Providers>
+            {children}
+            <Footer />
+          </Providers>
         </ThemeProvider>
       </body>
     </html>
