@@ -1,86 +1,78 @@
 "use client";
 
-import { useEffect } from "react";
-import { MapContainer, TileLayer, useMap } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
-import L from "leaflet";
-import "leaflet.heat";
+import React, { useMemo } from "react";
+import {
+  ComposableMap,
+  Geographies,
+  Geography,
+  ZoomableGroup,
+} from "react-simple-maps";
+import malaysiaTopoJSON from "./malaysia-states.json";
 
 interface HeatmapDataPoint {
   lat: number;
   lng: number;
   weight: number;
-  label: string;
+  label: string; // state name e.g., "selangor"
 }
 
 interface MapClientProps {
   data: HeatmapDataPoint[];
+  stateColors: Record<string, string>;
 }
 
-function HeatmapLayer({ data }: { data: HeatmapDataPoint[] }) {
-  const map = useMap();
-
-  useEffect(() => {
-    if (!map || !data || data.length === 0) return;
-
-    // Convert to Leaflet Heat data format: [lat, lng, intensity]
-    const heatData = data.map(
-      (point) => [point.lat, point.lng, point.weight] as L.HeatLatLngTuple,
-    );
-
-    // Provide some maximum intensity scaling based on our arbitrary weights
-    const maxWeight = Math.max(...data.map((d) => d.weight));
-
-    // Type assertion because leaflet.heat types can sometimes be missing from standard @types/leaflet
-    const heat = (L as any)
-      .heatLayer(heatData, {
-        radius: 26,
-        blur: 18,
-        maxZoom: 8,
-        max: maxWeight > 0 ? maxWeight : 1.0,
-        gradient: { 0.4: "cyan", 0.6: "yellow", 1: "red" }, // Brutalist highly visible gradient
-      })
-      .addTo(map);
-
-    return () => {
-      map.removeLayer(heat);
-    };
-  }, [map, data]);
-
-  return null;
-}
-
-export default function MapClient({ data }: MapClientProps) {
-  // Center of Malaysia
-  const center: [number, number] = [4.2105, 101.9758];
-
-  // We enforce dark mode tiles via NEXT_PUBLIC_URL (or fallbacks to standard Stadia if missing)
-  const TILE_URL =
-    process.env.NEXT_PUBLIC_TILE_URL ||
-    process.env.NEXT_PUBLIC_URL ||
-    "https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png";
+export default function MapClient({ data, stateColors }: MapClientProps) {
+  // Create a map of state names to weights
+  const stateWeights = useMemo(() => {
+    const weights: Record<string, number> = {};
+    data.forEach((d) => {
+      const stateName = d.label.toLowerCase();
+      // Aggregate weights per state if multiple points exist
+      weights[stateName] = (weights[stateName] || 0) + d.weight;
+    });
+    return weights;
+  }, [data]);
 
   return (
-    <div className="w-full h-[360px] md:h-[520px] bg-black border-[3px] border-white relative z-0">
-      <MapContainer
-        center={center}
-        zoom={6}
-        minZoom={6}
-        maxBounds={[
-          [0.8, 99.5], // South-West bound (near Sumatra)
-          [7.5, 119.5], // North-East bound (near Sabah)
-        ]}
-        maxBoundsViscosity={1.0}
-        scrollWheelZoom={false}
-        className="w-full h-full z-0"
-        style={{ background: "#000" }}
+    <div className="w-full h-full bg-white relative">
+      <ComposableMap
+        projection="geoMercator"
+        projectionConfig={{
+          center: [109.5, 4.3], // Centered between Peninsula and Sabah/Sarawak
+          scale: 1800, // Zoomed in to Malaysia
+        }}
+        className="w-full h-full"
       >
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url={TILE_URL}
-        />
-        <HeatmapLayer data={data} />
-      </MapContainer>
+        <ZoomableGroup center={[109.5, 4.3]} zoom={1} maxZoom={1}>
+          <Geographies geography={malaysiaTopoJSON}>
+            {({ geographies }) =>
+              geographies.map((geo) => {
+                const stateName = (geo.properties.name || "").toLowerCase();
+                const weight = stateWeights[stateName] || 0;
+
+                // If it has volume, give it the explicit state categorical color. Else brutalist light-gray empty state.
+                const fillCol =
+                  weight > 0 ? stateColors[stateName] || "#000" : "#F3F4F6";
+
+                return (
+                  <Geography
+                    key={geo.rsmKey}
+                    geography={geo}
+                    fill={fillCol}
+                    stroke="#000000"
+                    strokeWidth={1}
+                    style={{
+                      default: { outline: "none" },
+                      hover: { fill: "#EF4444", outline: "none" }, // Red hover
+                      pressed: { fill: "#EF4444", outline: "none" },
+                    }}
+                  />
+                );
+              })
+            }
+          </Geographies>
+        </ZoomableGroup>
+      </ComposableMap>
     </div>
   );
 }

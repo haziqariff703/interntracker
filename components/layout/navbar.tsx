@@ -2,8 +2,9 @@
 
 import * as React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu01Icon, Cancel01Icon, Briefcase01Icon } from "hugeicons-react";
+import { Menu01Icon, Cancel01Icon } from "hugeicons-react";
 
 const navItems = [
   { label: "Dashboard", href: "/" },
@@ -23,17 +24,16 @@ export function Navbar() {
           {/* Logo */}
           <Link
             href="/"
-            className="flex items-center gap-2 group transition-transform hover:scale-[1.02] active:scale-[0.98]"
+            className="flex items-center group transition-transform hover:scale-[1.02] active:scale-[0.98]"
           >
-            <div className="bg-black dark:bg-white p-2 rounded-lg border-2 border-black dark:border-white">
-              <Briefcase01Icon
-                size={20}
-                className="text-white dark:text-black"
-              />
-            </div>
-            <span className="font-black text-xl tracking-tighter text-black dark:text-white uppercase">
-              InternTracker
-            </span>
+            <Image
+              src="/assets/trackrlogo.png"
+              alt="Trackr Logo"
+              width={240}
+              height={60}
+              className="w-48 md:w-56 h-auto dark:invert"
+              priority
+            />
           </Link>
 
           {/* Desktop Nav */}

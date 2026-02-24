@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export function Footer() {
   return (
     <footer className="border-t-[3px] border-white px-6 lg:px-12 py-16 bg-black text-white">
@@ -6,9 +8,14 @@ export function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-12">
           {/* Left: Product Statement */}
           <div className="flex flex-col gap-4">
-            <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tighter">
-              INTERNSHIP TRACKER
-            </h3>
+            <Image
+              src="/assets/trackrlogo.png"
+              alt="Trackr Logo"
+              width={240}
+              height={60}
+              className="w-48 md:w-56 h-auto dark:invert mb-2"
+              priority
+            />
             <p className="text-white/60 font-mono text-sm uppercase tracking-widest max-w-sm leading-relaxed">
               Track internships.
               <br />
@@ -46,7 +53,7 @@ export function Footer() {
 
         {/* Bottom: Legal Bar */}
         <div className="border-t-[3px] border-white pt-8 flex justify-between items-center font-mono text-xs uppercase tracking-widest text-white/40">
-          <span>© 2026 INTERNSHIP TRACKER</span>
+          <span>© 2026 TRACKR</span>
           <span>PROTOCOL v1.0</span>
         </div>
       </div>
