@@ -15,6 +15,7 @@ const geistMono = Geist_Mono({
 import { Providers } from "@/components/providers";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Footer } from "@/components/layout/footer";
+import { GlobalAIChat } from "@/components/layout/global-ai-chat";
 
 export const metadata: Metadata = {
   title: "InternTracker - Smart Internship Management",
@@ -41,6 +42,7 @@ export default function RootLayout({
           <Providers>
             {children}
             <Footer />
+            <GlobalAIChat />
           </Providers>
         </ThemeProvider>
       </body>

@@ -122,7 +122,7 @@ export function MalaysiaHeatmap() {
           </div>
 
           {/* Details Card */}
-          <div className="border-[3px] border-white p-6 bg-black shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] flex flex-col gap-6">
+          <div className="border-[3px] border-white p-6 bg-black shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] md:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] mb-2 mr-2 md:mb-0 md:mr-0 flex flex-col gap-6">
             {/* Filter Section */}
             <div>
               <h3 className="text-xl font-black uppercase tracking-tighter mb-4 border-b-[3px] border-white pb-4">
@@ -143,7 +143,7 @@ export function MalaysiaHeatmap() {
               </Select>
             </div>
 
-            <div className="font-mono text-sm text-white/70 min-h-[100px]">
+            <div className="font-mono text-sm text-white/70 min-h-25">
               <p className="mb-4 text-xs">
                 Hover over regions to inspect the map.
               </p>
@@ -164,10 +164,10 @@ export function MalaysiaHeatmap() {
                         key={i}
                         className="flex justify-between items-center pb-2"
                       >
-                        <span className="uppercase text-xs">
+                        <span className="uppercase text-xs truncate max-w-[70%]">
                           {i + 1}. {pt.label}
                         </span>
-                        <span className="font-black text-white text-xs">
+                        <span className="font-black text-white text-xs whitespace-nowrap">
                           {pt.weight} vol
                         </span>
                       </div>
@@ -184,14 +184,14 @@ export function MalaysiaHeatmap() {
 
         {/* Right Column: The Map Container */}
         <div className="lg:col-span-8 relative">
-          <div className="w-full h-[500px] md:h-[600px] bg-black border-[3px] border-white shadow-[12px_12px_0px_0px_rgba(255,255,255,1)] relative overflow-hidden flex flex-col">
+          <div className="w-full h-100 md:h-150 bg-black border-[3px] border-white shadow-[6px_6px_0px_0px_rgba(255,255,255,1)] md:shadow-[12px_12px_0px_0px_rgba(255,255,255,1)] mb-4 mr-4 md:mb-0 md:mr-0 relative overflow-hidden flex flex-col">
             {/* Top Bar inside the map (optional, matching image header label) */}
             <div className="absolute top-4 right-4 z-10 font-black uppercase tracking-widest text-xs bg-black text-white px-3 py-1 border-[3px] border-white drop-shadow-[4px_4px_0px_rgba(255,255,255,1)] pointer-events-none">
               MALAYSIA
             </div>
 
             {/* Sub-Legend / Info Box inside Map */}
-            <div className="absolute bottom-4 left-4 z-10 bg-black border-[3px] border-white p-4 min-w-40 max-w-[200px] drop-shadow-[6px_6px_0px_rgba(255,255,255,1)] pointer-events-none hidden sm:block">
+            <div className="absolute bottom-4 left-4 z-10 bg-black border-[3px] border-white p-4 min-w-40 max-w-50 drop-shadow-[6px_6px_0px_rgba(255,255,255,1)] pointer-events-none hidden sm:block">
               <div className="font-black uppercase text-xs border-b-[3px] border-white pb-2 mb-2">
                 Legend
               </div>

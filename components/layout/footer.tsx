@@ -9,7 +9,7 @@ export function Footer() {
           {/* Left: Product Statement */}
           <div className="flex flex-col gap-4">
             <Image
-              src="/assets/trackrlogo.png"
+              src="/assets/trackr_logo.png"
               alt="Trackr Logo"
               width={240}
               height={60}

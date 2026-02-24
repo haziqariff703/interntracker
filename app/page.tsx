@@ -6,6 +6,10 @@ import {
 } from "hugeicons-react";
 import { InteractiveGridPattern } from "@/components/ui/interactive-grid-pattern";
 import { MalaysiaHeatmap } from "@/components/landing/malaysia-heatmap";
+import { AiChatPreview } from "@/components/landing/ai-chat-preview";
+import { IndustryTicker } from "@/components/landing/industry-ticker";
+import { WallOfProof } from "@/components/landing/wall-of-proof";
+import { RoiCalculator } from "@/components/landing/roi-calculator";
 
 export default function Home() {
   return (
@@ -85,7 +89,7 @@ export default function Home() {
               {
                 icon: <ArtificialIntelligence01Icon className="w-10 h-10" />,
                 title: "AI Analysis",
-                desc: "Gemini 1.5 interprets your data to provide strategic advice on interview prep.",
+                desc: "TrackrBot interprets your data to provide strategic advice on interview prep.",
               },
               {
                 icon: <AnalyticsUpIcon className="w-10 h-10" />,
@@ -113,40 +117,43 @@ export default function Home() {
           </div>
         </section>
 
+        {/* 2.5 Live Industry Stats */}
+        <IndustryTicker />
+
         <hr className="border-t-[3px] border-white w-full my-24 lg:my-32" />
 
         {/* 3. Product Preview */}
         <section className="px-6 lg:px-12 max-w-7xl mx-auto mb-24 lg:mb-32">
-          <div className="border-[3px] border-white bg-black p-4 aspect-square md:aspect-video flex flex-col">
-            <div className="border-b-[3px] border-white pb-4 mb-4 flex justify-between items-center">
-              <div className="flex gap-2">
-                <div className="w-4 h-4 border-[3px] border-white rounded-none bg-black" />
-                <div className="w-4 h-4 border-[3px] border-white rounded-none bg-black" />
-                <div className="w-4 h-4 border-[3px] border-white rounded-none bg-black" />
-              </div>
-              <div className="text-xs md:text-sm font-black tracking-widest uppercase">
-                REAL-TIME INTERNSHIP INTELLIGENCE
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
+            <div className="lg:col-span-4 flex flex-col gap-8">
+              <div>
+                <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-4">
+                  AI Intelligence
+                </h2>
+                <p className="font-mono text-sm uppercase tracking-widest text-white/80 leading-relaxed mb-4">
+                  Your Tactical Career Navigator.
+                </p>
+                <p className="text-white/50 text-xs font-mono uppercase tracking-widest leading-loose">
+                  TrackrBot interprets your application status and feedback to
+                  provide surgical-grade strategy. Real-time tactical advice to
+                  optimize your interview conversion rates.
+                </p>
               </div>
             </div>
-            <div className="flex-1 border-[3px] border-white flex flex-col items-center justify-center p-8 bg-[#0a0a0a]">
-              <div className="text-center w-full max-w-3xl">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-                  {[...Array(4)].map((_, i) => (
-                    <div
-                      key={i}
-                      className="border-[3px] border-white p-4 text-left"
-                    >
-                      <div className="text-white/50 text-xs font-black mb-2">
-                        METRIC_0{i + 1}
-                      </div>
-                      <div className="text-2xl font-black">---</div>
-                    </div>
-                  ))}
+            <div className="lg:col-span-8 border-[3px] border-white bg-black p-4 aspect-4/5 sm:aspect-square md:aspect-video flex flex-col">
+              <div className="border-b-[3px] border-white pb-4 mb-4 flex justify-between items-center">
+                <div className="flex gap-2">
+                  <div className="w-4 h-4 border-[3px] border-white rounded-none bg-black" />
+                  <div className="w-4 h-4 border-[3px] border-white rounded-none bg-black" />
+                  <div className="w-4 h-4 border-[3px] border-white rounded-none bg-black" />
                 </div>
-                <div className="border-[3px] border-white p-8 text-left h-48 flex items-end">
-                  <span className="text-white/50 font-black tracking-widest uppercase text-sm">
-                    System Dashboard Placeholder
-                  </span>
+                <div className="text-[10px] sm:text-xs md:text-sm font-black tracking-widest uppercase truncate ml-2">
+                  REAL-TIME INTERNSHIP INTELLIGENCE
+                </div>
+              </div>
+              <div className="flex-1 border-[3px] border-white flex flex-col items-center justify-center p-0 bg-[#0a0a0a] overflow-hidden">
+                <div className="w-full h-full relative">
+                  <AiChatPreview />
                 </div>
               </div>
             </div>
@@ -155,6 +162,31 @@ export default function Home() {
 
         {/* 3.5 Heatmap (Dynamic) */}
         <MalaysiaHeatmap />
+
+        {/* 3.7 Proof & Strategy */}
+        <section className="px-6 lg:px-12 max-w-7xl mx-auto mb-24 lg:mb-32">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
+            <div className="lg:col-span-4 flex flex-col gap-8">
+              <div>
+                <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-4">
+                  Success Protocol
+                </h2>
+                <p className="font-mono text-sm uppercase tracking-widest text-white/80 leading-relaxed mb-4">
+                  Verify Your Market Readiness.
+                </p>
+                <p className="text-white/50 text-xs font-mono uppercase tracking-widest leading-loose">
+                  Our system transforms raw submission data into high-fidelity
+                  benchmarks. Monitor live placement frequency and calculate
+                  your real-time employment potential index.
+                </p>
+              </div>
+            </div>
+            <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+              <WallOfProof />
+              <RoiCalculator />
+            </div>
+          </div>
+        </section>
 
         {/* Massive Marquee */}
         <section className="border-y-[3px] border-white bg-black overflow-hidden py-12 mb-24 lg:mb-32">

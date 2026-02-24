@@ -121,7 +121,7 @@ The system integrates with:
 
 - Google OAuth
 - GitHub OAuth
-- Gemini 1.5 (AI Analytics)
+- TrackrBot (AI Analytics)
 - Resend (Email Notifications)
 
 All API keys are stored securely using environment variables and are never exposed to the client.
@@ -161,7 +161,7 @@ This ensures:
 
 ## 5.2 Layer 2 – AI Interpretation Layer
 
-After structured scoring, summarized data is sent to Gemini 1.5 for contextual interpretation.
+After structured scoring, summarized data is sent to TrackrBot for contextual interpretation.
 
 Example structured input:
 
@@ -214,7 +214,7 @@ API Route
  ↓
 Deterministic Scoring Engine
  ↓
-Gemini 1.5 AI Interpretation
+TrackrBot AI Interpretation
  ↓
 Response Formatter
  ↓
@@ -254,7 +254,7 @@ Although currently positioned as a portfolio project, the architecture supports 
 | Frontend | Vercel            |
 | API      | Vercel Serverless |
 | Database | Neon DB           |
-| AI       | Gemini 1.5        |
+| AI       | TrackrBot         |
 | Email    | Resend            |
 
 All services are cloud-managed to minimize infrastructure overhead.

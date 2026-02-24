@@ -173,11 +173,11 @@
   }
 
   .brutal-btn {
-    @apply inline-flex items-center justify-center rounded-full border-2 border-black dark:border-white bg-white dark:bg-black px-6 py-2 font-bold transition-all active:translate-x-[2px] active:translate-y-[2px] active:shadow-none shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_0px_rgba(255,255,255,1)] hover:-translate-x-[1px] hover:-translate-y-[1px] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[3px_3px_0px_0px_rgba(255,255,255,1)];
+    @apply inline-flex items-center justify-center rounded-full border-2 border-black dark:border-white bg-white dark:bg-black px-6 py-2 font-bold transition-all active:translate-x-0.5 active:translate-y-0.5 active:shadow-none shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_0px_rgba(255,255,255,1)] hover:-translate-x-px hover:-translate-y-px hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[3px_3px_0px_0px_rgba(255,255,255,1)];
   }
 
   .brutal-btn-primary {
-    @apply inline-flex items-center justify-center rounded-full border-2 border-black dark:border-white bg-black dark:bg-white text-white dark:text-black px-6 py-2 font-bold transition-all active:translate-x-[2px] active:translate-y-[2px] active:shadow-none shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_0px_rgba(255,255,255,1)] hover:-translate-x-[1px] hover:-translate-y-[1px] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[3px_3px_0px_0px_rgba(255,255,255,1)];
+    @apply inline-flex items-center justify-center rounded-full border-2 border-black dark:border-white bg-black dark:bg-white text-white dark:text-black px-6 py-2 font-bold transition-all active:translate-x-0.5 active:translate-y-0.5 active:shadow-none shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_0px_rgba(255,255,255,1)] hover:-translate-x-px hover:-translate-y-px hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[3px_3px_0px_0px_rgba(255,255,255,1)];
   }
 
   .font-pixel {
@@ -197,12 +197,29 @@
     animation: marquee 15s linear infinite;
   }
 
+  .animate-marquee-fast {
+    animation: marquee 8s linear infinite;
+  }
+
+  .animate-scroll-vertical {
+    animation: scroll-vertical 20s linear infinite;
+  }
+
   @keyframes marquee {
     0% {
       transform: translateX(0);
     }
     100% {
       transform: translateX(-50%);
+    }
+  }
+
+  @keyframes scroll-vertical {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-50%);
     }
   }
 }
